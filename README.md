@@ -7,7 +7,7 @@
 
 Using either the search bar or dropdown menu, user can select any of the 100 counties in North Carolina, GreenBound's page will update showing environmental data for that county.
 
-## How we built it
+## How I built it
 GreenBound is built with **Golang (Go)** , **HTMX**, and the **EJSCREEN API** [link](https://www.epa.gov/ejscreen/what-ejscreen)
 
 Go as the Backend:
