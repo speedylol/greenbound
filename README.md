@@ -1,6 +1,4 @@
-# greenbound
- 
-# greenbound
+# GreenBound
  
 ## Inspiration
 
