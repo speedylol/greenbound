@@ -52,9 +52,9 @@ I learned a lot about the HTMX framework and gained experience using Golang for 
 
 ## What's next for greenbound
 
-GreenBound will need polishing for the UI ()
+GreenBound will need polishing for the UI to eventually become a full stack web application,
+What's already built is focused on North Carolina but future instances will have full coverage of the United States
 
-It is intended to be used not just to search
 
 
 
