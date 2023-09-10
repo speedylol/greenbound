@@ -1,0 +1,81 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+@keyframes grow-width {
+  from {
+    width: 0;
+  }
+}
+
+body {
+  font-family: "Open Sans", Arial;
+  background: #EDEDED;
+}
+#graphs {
+  width: 400px;
+  margin: 30px auto;
+  padding: 10px 40px 50px;
+  background: #FFF;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+h1, h4 {
+  text-align: center;
+  color: #333;
+}
+p {
+  font-size: 13px;
+}
+section {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 20px;
+}
+section:nth-of-type(odd) {
+  margin-right: 20px;
+}
+.style-1 {
+  list-style-type: none;
+  padding: 0;
+  width: 350px;
+  li {
+    position: relative;
+    height: 50px;
+    em, span {
+      display: block;
+      border-bottom: 5px solid #FFE5E5;
+      padding-bottom: 5px;
+    }
+    em {
+      font-style: normal;
+      border-bottom-color: #DB6B6B;
+      position: absolute;
+      overflow: visible;
+      animation: grow-width 2s;
+    }
+    span {
+      text-align: right;
+    }
+  }
+}
+.style-2 {
+  list-style-type: none;
+  padding: 0;
+  width: 350px;
+  li {
+    height: 50px;
+    em, span {
+      padding: 5px 10px;
+    }
+    em {
+      text-align: right;
+      font-style: normal;
+      float: left;
+      width: 85px;
+    }
+    span {
+      display: inline-block;
+      background: #FFE5E5;
+      overflow: visible;
+      animation: grow-width 2s;
+    }
+  }
+}

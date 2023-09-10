@@ -9,9 +9,6 @@ import (
 	"os"
 	"text/template"
 	"time"
-
-	"github.com/tidwall/gjson"
-	"github.com/tidwall/sjson"
 )
 
 type Main struct {
@@ -65,8 +62,6 @@ type Demographics struct {
 	POwnOccupied       string `json:"P_OWN_OCCUPIED"`
 }
 
-const test = `{"name":{"first":"Janet","last":"Prichard"},"age":47}`
-
 var myClient = &http.Client{Timeout: 10 * time.Second}
 
 func getJson(url string, target interface{}) error {
@@ -74,7 +69,6 @@ func getJson(url string, target interface{}) error {
 	if err != nil {
 		return err
 	}
-
 	defer func() {
 		io.Copy(io.Discard, r.Body)
 		r.Body.Close()
@@ -84,14 +78,7 @@ func getJson(url string, target interface{}) error {
 	return json.NewDecoder(r.Body).Decode(target)
 }
 
-func dbSearch(countyName string) {
-
-	value := gjson.Get(test, "name.last")
-	println(value.String())
-
-	value2, _ := sjson.Set(test, "name.last", "Anderson")
-	sjson.Set(test, "name.last", "Anderson")
-	println(value2)
+func EJSearch(countyName string) {
 
 	// Create a map to unmarshal the JSON data into
 	var countyFIPSCodes map[string]string
@@ -109,7 +96,6 @@ func dbSearch(countyName string) {
 	}
 
 	// Parse the JSON content for corresponding FIPS code
-
 	err = json.Unmarshal(content, &countyFIPSCodes)
 	if err != nil {
 		log.Fatalf("Error unmarshalling JSON: %v", err)
@@ -133,13 +119,14 @@ func dbSearch(countyName string) {
 
 }
 
+// placeholder
 type County struct {
 	Name string
 	Pop  int32
 }
 
 func main() {
-	dbSearch("Wake")
+	EJSearch("Wake")
 
 	h1 := func(w http.ResponseWriter, r *http.Request) {
 
@@ -154,13 +141,11 @@ func main() {
 		tmpl.Execute(w, counties)
 	}
 
-	// handler function #2 - returns the template block with updated input, as an HTMX response
+	// returns the template block with updated input, as an HTMX response
 	h2 := func(w http.ResponseWriter, r *http.Request) {
 		time.Sleep(1 * time.Second)
 		title := r.PostFormValue("name")
-		//pop := r.PostFormValue("population")
-		// htmlStr := fmt.Sprintf("<li class='list-group-item bg-primary text-white'>%s - %s</li>", title, director)
-		// tmpl, _ := template.New("t").Parse(htmlStr)
+
 		tmpl := template.Must(template.ParseFiles("index.html"))
 		tmpl.ExecuteTemplate(w, "county-info-element", County{Name: title, Pop: 100000})
 	}
